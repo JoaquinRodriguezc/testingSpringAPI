@@ -1,7 +1,7 @@
 package com.example.inicial1.services;
 
-import com.example.inicial1.entities.Persona;
-import com.example.inicial1.repositories.PersonaRepository;
+import com.example.inicial1.entities.Localidad;
+import com.example.inicial1.repositories.LocalidadRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -9,19 +9,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonaServices implements BaseService<Persona> {
+public class LocalidadService implements BaseService<Localidad> {
 
-    private PersonaRepository personaRepository;
+    private LocalidadRepository localidadRepository;
 
-    public PersonaServices(PersonaRepository personaRepository) {
-        this.personaRepository = personaRepository;
+    public LocalidadService(LocalidadRepository localidadRepository) {
+        this.localidadRepository = localidadRepository;
     }
 
     @Transactional
     @Override
-    public List<Persona> findAll() throws Exception {
+    public List<Localidad> findAll() throws Exception {
         try {
-            List<Persona> entities = personaRepository.findAll();
+            List<Localidad> entities = localidadRepository.findAll();
             return entities;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -30,9 +30,9 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona findById(Long id) throws Exception {
+    public Localidad findById(Long id) throws Exception {
         try {
-            Optional<Persona> entityOptional = personaRepository.findById(id);
+            Optional<Localidad> entityOptional = localidadRepository.findById(id);
             return entityOptional.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -41,9 +41,9 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona save(Persona entity) throws Exception {
+    public Localidad save(Localidad entity) throws Exception {
         try {
-            entity = personaRepository.save(entity);
+            entity = localidadRepository.save(entity);
             return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -52,11 +52,11 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona update(Long id, Persona entity) throws Exception {
+    public Localidad update(Long id, Localidad entity) throws Exception {
         try {
-            Optional<Persona> entityOptional = personaRepository.findById(id);
-            Persona persona = entityOptional.get();
-            persona = personaRepository.save(entity);
+            Optional<Localidad> entityOptional = localidadRepository.findById(id);
+            Localidad persona = entityOptional.get();
+            persona = localidadRepository.save(entity);
             return persona;
         } catch (Exception e) {
             throw new Exception(e);
@@ -67,8 +67,8 @@ public class PersonaServices implements BaseService<Persona> {
     @Transactional
     public boolean delete(Long id) throws Exception {
         try {
-            if (personaRepository.existsById(id)) {
-                personaRepository.deleteById(id);
+            if (localidadRepository.existsById(id)) {
+                localidadRepository.deleteById(id);
                 return true;
             } else {
                 throw new Exception();

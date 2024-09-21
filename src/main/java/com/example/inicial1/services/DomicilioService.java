@@ -1,7 +1,7 @@
 package com.example.inicial1.services;
 
-import com.example.inicial1.entities.Persona;
-import com.example.inicial1.repositories.PersonaRepository;
+import com.example.inicial1.entities.Domicilio;
+import com.example.inicial1.repositories.DomicilioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -9,19 +9,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonaServices implements BaseService<Persona> {
+public class DomicilioService implements BaseService<Domicilio> {
 
-    private PersonaRepository personaRepository;
+    private DomicilioRepository domicilioRepository;
 
-    public PersonaServices(PersonaRepository personaRepository) {
-        this.personaRepository = personaRepository;
+    public DomicilioService(DomicilioRepository domicilioRepository) {
+        this.domicilioRepository = domicilioRepository;
     }
 
     @Transactional
     @Override
-    public List<Persona> findAll() throws Exception {
+    public List<Domicilio> findAll() throws Exception {
         try {
-            List<Persona> entities = personaRepository.findAll();
+            List<Domicilio> entities = domicilioRepository.findAll();
             return entities;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -30,9 +30,9 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona findById(Long id) throws Exception {
+    public Domicilio findById(Long id) throws Exception {
         try {
-            Optional<Persona> entityOptional = personaRepository.findById(id);
+            Optional<Domicilio> entityOptional = domicilioRepository.findById(id);
             return entityOptional.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -41,9 +41,9 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona save(Persona entity) throws Exception {
+    public Domicilio save(Domicilio entity) throws Exception {
         try {
-            entity = personaRepository.save(entity);
+            entity = domicilioRepository.save(entity);
             return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -52,11 +52,11 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona update(Long id, Persona entity) throws Exception {
+    public Domicilio update(Long id, Domicilio entity) throws Exception {
         try {
-            Optional<Persona> entityOptional = personaRepository.findById(id);
-            Persona persona = entityOptional.get();
-            persona = personaRepository.save(entity);
+            Optional<Domicilio> entityOptional = domicilioRepository.findById(id);
+            Domicilio persona = entityOptional.get();
+            persona = domicilioRepository.save(entity);
             return persona;
         } catch (Exception e) {
             throw new Exception(e);
@@ -67,8 +67,8 @@ public class PersonaServices implements BaseService<Persona> {
     @Transactional
     public boolean delete(Long id) throws Exception {
         try {
-            if (personaRepository.existsById(id)) {
-                personaRepository.deleteById(id);
+            if (domicilioRepository.existsById(id)) {
+                domicilioRepository.deleteById(id);
                 return true;
             } else {
                 throw new Exception();

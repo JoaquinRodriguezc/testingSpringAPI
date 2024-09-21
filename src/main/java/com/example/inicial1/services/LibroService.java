@@ -1,7 +1,7 @@
 package com.example.inicial1.services;
 
-import com.example.inicial1.entities.Persona;
-import com.example.inicial1.repositories.PersonaRepository;
+import com.example.inicial1.entities.Libro;
+import com.example.inicial1.repositories.LibroRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -9,19 +9,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonaServices implements BaseService<Persona> {
+public class LibroService implements BaseService<Libro> {
 
-    private PersonaRepository personaRepository;
+    private LibroRepository libroRepository;
 
-    public PersonaServices(PersonaRepository personaRepository) {
-        this.personaRepository = personaRepository;
+    public LibroService(LibroRepository libroRepository) {
+        this.libroRepository = libroRepository;
     }
 
     @Transactional
     @Override
-    public List<Persona> findAll() throws Exception {
+    public List<Libro> findAll() throws Exception {
         try {
-            List<Persona> entities = personaRepository.findAll();
+            List<Libro> entities = libroRepository.findAll();
             return entities;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -30,9 +30,9 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona findById(Long id) throws Exception {
+    public Libro findById(Long id) throws Exception {
         try {
-            Optional<Persona> entityOptional = personaRepository.findById(id);
+            Optional<Libro> entityOptional = libroRepository.findById(id);
             return entityOptional.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -41,9 +41,9 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona save(Persona entity) throws Exception {
+    public Libro save(Libro entity) throws Exception {
         try {
-            entity = personaRepository.save(entity);
+            entity = libroRepository.save(entity);
             return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -52,11 +52,11 @@ public class PersonaServices implements BaseService<Persona> {
 
     @Override
     @Transactional
-    public Persona update(Long id, Persona entity) throws Exception {
+    public Libro update(Long id, Libro entity) throws Exception {
         try {
-            Optional<Persona> entityOptional = personaRepository.findById(id);
-            Persona persona = entityOptional.get();
-            persona = personaRepository.save(entity);
+            Optional<Libro> entityOptional = libroRepository.findById(id);
+            Libro persona = entityOptional.get();
+            persona = libroRepository.save(entity);
             return persona;
         } catch (Exception e) {
             throw new Exception(e);
@@ -67,8 +67,8 @@ public class PersonaServices implements BaseService<Persona> {
     @Transactional
     public boolean delete(Long id) throws Exception {
         try {
-            if (personaRepository.existsById(id)) {
-                personaRepository.deleteById(id);
+            if (libroRepository.existsById(id)) {
+                libroRepository.deleteById(id);
                 return true;
             } else {
                 throw new Exception();

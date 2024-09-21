@@ -5,7 +5,7 @@ import lombok.*;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Table(name = "domicilio")
+@Table(name = "Autor")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -13,15 +13,14 @@ import org.hibernate.envers.Audited;
 @ToString
 @Builder
 @Audited
-public class Domicilio {
+public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "calle")
-    private String calle;
-    @Column(name = "numero")
-    private int numero;
-    @OneToOne()
-    @JoinColumn(name = "fk_localidad")
-    private Localidad localidad;
+    @Column(name = "nombre")
+    private String nombre;
+    @Column(name = "apellido")
+    private String apellido;
+    @Column(name = "biografia")
+    private String biografia;
 }
